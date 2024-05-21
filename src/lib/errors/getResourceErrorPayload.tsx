@@ -1,5 +1,5 @@
-import { ResourceError } from '../api/resources';
 import getErrorCause from './getErrorCause';
+import { ResourceError } from '../api/resources';
 
 export default function getResourceErrorPayload<
   Payload = Record<string, unknown> | string

@@ -1,11 +1,11 @@
 import { compile } from 'path-to-regexp';
+
 import {
-  RESOURCES,
-  ResourceQueryParams,
   type ApiResource,
   type ResourceName,
   type ResourcePathParams,
-  ResourceBody,
+  ResourceQueryParams,
+  RESOURCES,
 } from './resources';
 
 export default function buildUrl<R extends ResourceName>(

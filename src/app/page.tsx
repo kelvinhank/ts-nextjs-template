@@ -4,6 +4,11 @@ import Head from 'next/head';
 import * as React from 'react';
 import '@/lib/env';
 
+import ArrowLink from '@/app/components/common/links/ArrowLink';
+import ButtonLink from '@/app/components/common/links/ButtonLink';
+import UnderlineLink from '@/app/components/common/links/UnderlineLink';
+import UnstyledLink from '@/app/components/common/links/UnstyledLink';
+
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -12,10 +17,6 @@ import '@/lib/env';
  * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
  */
 import Logo from '~/svg/Logo.svg';
-import ArrowLink from '@/app/components/common/links/ArrowLink';
-import ButtonLink from '@/app/components/common/links/ButtonLink';
-import UnstyledLink from '@/app/components/common/links/UnstyledLink';
-import UnderlineLink from '@/app/components/common/links/UnderlineLink';
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
