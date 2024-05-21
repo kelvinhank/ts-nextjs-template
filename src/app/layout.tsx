@@ -4,7 +4,11 @@ import * as React from 'react';
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+import '@/styles/main.scss';
 
+import ClientApplication from '@/app/ClientApplication';
+import Footer from '@/app/components/layout/Footer';
+import Header from '@/app/components/layout/Header';
 import { siteConfig } from '@/constant/config';
 
 // !STARTERCONF Change these default meta
@@ -56,7 +60,11 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <ClientApplication>{children}</ClientApplication>
+        <Footer />
+      </body>
     </html>
   );
 }

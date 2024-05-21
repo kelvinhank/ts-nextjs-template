@@ -11,16 +11,16 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
-import Button from '@/components/buttons/Button';
-import IconButton from '@/components/buttons/IconButton';
-import TextButton from '@/components/buttons/TextButton';
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import PrimaryLink from '@/components/links/PrimaryLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
-import NextImage from '@/components/NextImage';
-import Skeleton from '@/components/Skeleton';
+import Button from '@/app/components/common/buttons/Button';
+import ArrowLink from '@/app/components/common/links/ArrowLink';
+import ButtonLink from '@/app/components/common/links/ButtonLink';
+import UnstyledLink from '@/app/components/common/links/UnstyledLink';
+import PrimaryLink from '@/app/components/common/links/PrimaryLink';
+import UnderlineLink from '@/app/components/common/links/UnderlineLink';
+import TextButton from '@/app/components/common/buttons/TextButton';
+import IconButton from '@/app/components/common/buttons/IconButton';
+import NextImage from '@/app/components/common/NextImage';
+import Skeleton from '@/app/components/common/Skeleton';
 
 type Color = (typeof colorList)[number];
 
@@ -44,7 +44,7 @@ export default function ComponentPage() {
             mode === 'dark' ? 'text-white' : 'text-black'
           )}
         >
-          <h1>Built-in Components</h1>
+          <h1>Built-in app/Components</h1>
           <ArrowLink direction='left' className='mt-2' href='/'>
             Back to Home
           </ArrowLink>
@@ -74,9 +74,9 @@ export default function ComponentPage() {
                   className={clsx(
                     'block max-w-xs rounded',
                     mode === 'dark'
-                      ? 'bg-dark border border-gray-600'
+                      ? 'border border-gray-600 bg-dark'
                       : 'border-gray-300 bg-white',
-                    'focus:border-primary-400 focus:ring-primary-400 focus:outline-none focus:ring'
+                    'focus:border-primary-400 focus:outline-none focus:ring focus:ring-primary-400'
                   )}
                   onChange={(e) => setColor(e.target.value as Color)}
                 >
@@ -91,37 +91,37 @@ export default function ComponentPage() {
                 </ButtonLink>
               </div>
               <div className='flex flex-wrap gap-2 text-xs font-medium'>
-                <div className='bg-primary-50 flex h-10 w-10 items-center justify-center rounded text-black'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-50 text-black'>
                   50
                 </div>
-                <div className='bg-primary-100 flex h-10 w-10 items-center justify-center rounded text-black'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-100 text-black'>
                   100
                 </div>
-                <div className='bg-primary-200 flex h-10 w-10 items-center justify-center rounded text-black'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-200 text-black'>
                   200
                 </div>
-                <div className='bg-primary-300 flex h-10 w-10 items-center justify-center rounded text-black'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-300 text-black'>
                   300
                 </div>
-                <div className='bg-primary-400 flex h-10 w-10 items-center justify-center rounded text-black'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-400 text-black'>
                   400
                 </div>
-                <div className='bg-primary-500 flex h-10 w-10 items-center justify-center rounded text-black'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-500 text-black'>
                   500
                 </div>
-                <div className='bg-primary-600 flex h-10 w-10 items-center justify-center rounded text-white'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-600 text-white'>
                   600
                 </div>
-                <div className='bg-primary-700 flex h-10 w-10 items-center justify-center rounded text-white'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-700 text-white'>
                   700
                 </div>
-                <div className='bg-primary-800 flex h-10 w-10 items-center justify-center rounded text-white'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-800 text-white'>
                   800
                 </div>
-                <div className='bg-primary-900 flex h-10 w-10 items-center justify-center rounded text-white'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-900 text-white'>
                   900
                 </div>
-                <div className='bg-primary-950 flex h-10 w-10 items-center justify-center rounded text-white'>
+                <div className='flex h-10 w-10 items-center justify-center rounded bg-primary-950 text-white'>
                   950
                 </div>
               </div>

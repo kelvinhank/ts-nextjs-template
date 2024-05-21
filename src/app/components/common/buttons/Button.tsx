@@ -1,39 +1,33 @@
 import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
+import { ImSpinner2 } from 'react-icons/im';
 
 import { cn } from '@/lib/utils';
 
-import UnstyledLink, {
-  UnstyledLinkProps,
-} from '@/components/links/UnstyledLink';
+const ButtonVariant = ['primary', 'outline', 'ghost', 'light', 'dark'] as const;
+const ButtonSize = ['sm', 'base'] as const;
 
-const ButtonLinkVariant = [
-  'primary',
-  'outline',
-  'ghost',
-  'light',
-  'dark',
-] as const;
-const ButtonLinkSize = ['sm', 'base'] as const;
-
-type ButtonLinkProps = {
+type ButtonProps = {
+  isLoading?: boolean;
   isDarkBg?: boolean;
-  variant?: (typeof ButtonLinkVariant)[number];
-  size?: (typeof ButtonLinkSize)[number];
+  variant?: (typeof ButtonVariant)[number];
+  size?: (typeof ButtonSize)[number];
   leftIcon?: IconType | LucideIcon;
   rightIcon?: IconType | LucideIcon;
   classNames?: {
     leftIcon?: string;
     rightIcon?: string;
   };
-} & UnstyledLinkProps;
+} & React.ComponentPropsWithRef<'button'>;
 
-const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
       className,
+      disabled: buttonDisabled,
+      isLoading,
       variant = 'primary',
       size = 'base',
       isDarkBg = false,
@@ -44,13 +38,16 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
     },
     ref
   ) => {
+    const disabled = isLoading || buttonDisabled;
+
     return (
-      <UnstyledLink
+      <button
         ref={ref}
-        {...rest}
+        type='button'
+        disabled={disabled}
         className={cn(
           'inline-flex items-center rounded font-medium',
-          'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
+          'focus:outline-none focus-visible:ring focus-visible:ring-primary-500',
           'shadow-sm',
           'transition-colors duration-75',
           //#region  //*=========== Size ===========
@@ -63,14 +60,14 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           [
             variant === 'primary' && [
               'bg-primary-500 text-white',
-              'border-primary-600 border',
+              'border border-primary-600',
               'hover:bg-primary-600 hover:text-white',
               'active:bg-primary-700',
               'disabled:bg-primary-700',
             ],
             variant === 'outline' && [
               'text-primary-500',
-              'border-primary-500 border',
+              'border border-primary-500',
               'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
               isDarkBg &&
                 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
@@ -85,7 +82,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
             variant === 'light' && [
               'bg-white text-gray-700',
               'border border-gray-300',
-              'hover:text-dark hover:bg-gray-100',
+              'hover:bg-gray-100 hover:text-dark',
               'active:bg-white/80 disabled:bg-gray-200',
             ],
             variant === 'dark' && [
@@ -96,9 +93,26 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
           ],
           //#endregion  //*======== Variants ===========
           'disabled:cursor-not-allowed',
+          isLoading &&
+            'relative text-transparent transition-none hover:text-transparent disabled:cursor-wait',
           className
         )}
+        {...rest}
       >
+        {isLoading && (
+          <div
+            className={cn(
+              'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
+              {
+                'text-white': ['primary', 'dark'].includes(variant),
+                'text-black': ['light'].includes(variant),
+                'text-primary-500': ['outline', 'ghost'].includes(variant),
+              }
+            )}
+          >
+            <ImSpinner2 className='animate-spin' />
+          </div>
+        )}
         {LeftIcon && (
           <div
             className={cn([
@@ -138,9 +152,9 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
             />
           </div>
         )}
-      </UnstyledLink>
+      </button>
     );
   }
 );
 
-export default ButtonLink;
+export default Button;
