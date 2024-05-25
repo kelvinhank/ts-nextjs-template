@@ -1,72 +1,45 @@
-'use client';
+import Link from 'next/link';
 
-import Head from 'next/head';
-import * as React from 'react';
-import '@/lib/env';
+import { demos } from '@/lib/demos';
 
-import ArrowLink from '@/app/components/common/links/ArrowLink';
-import ButtonLink from '@/app/components/common/links/ButtonLink';
-import UnderlineLink from '@/app/components/common/links/UnderlineLink';
-import UnstyledLink from '@/app/components/common/links/UnstyledLink';
-
-/**
- * SVGR Support
- * Caveat: No React Props Type.
- *
- * You can override the next-env if the type is important to you
- * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
- */
-import Logo from '~/svg/Logo.svg';
-
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
-
-export default function HomePage() {
+export default function Page() {
   return (
-    <main>
-      <Head>
-        <title>Hi</title>
-      </Head>
-      <section className='bg-white'>
-        <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-          <Logo className='w-16' />
-          <h1 className='mt-4'>Next.js + Tailwind CSS + TypeScript Starter</h1>
-          <p className='mt-2 text-sm text-gray-800'>
-            A starter for Next.js, Tailwind CSS, and TypeScript with Absolute
-            Import, Seo, Link component, pre-configured with Husky{' '}
-          </p>
-          <p className='mt-2 text-sm text-gray-700'>
-            <ArrowLink href='https://github.com/theodorusclarence/ts-nextjs-tailwind-starter'>
-              See the repository
-            </ArrowLink>
-          </p>
+    <div className='space-y-8'>
+      <h1 className='text-xl font-medium text-gray-300'>Examples</h1>
 
-          <ButtonLink className='mt-6' href='/components' variant='light'>
-            See all components
-          </ButtonLink>
+      <div className='space-y-10 text-white'>
+        {demos.map((section) => {
+          return (
+            <div key={section.name} className='space-y-5'>
+              <div className='text-xs font-semibold uppercase tracking-wider text-gray-400'>
+                {section.name}
+              </div>
 
-          <UnstyledLink
-            href='https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter'
-            className='mt-4'
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              width='92'
-              height='32'
-              src='https://vercel.com/button'
-              alt='Deploy with Vercel'
-            />
-          </UnstyledLink>
+              <div className='grid grid-cols-1 gap-5 lg:grid-cols-2'>
+                {section.items.map((item) => {
+                  return (
+                    <Link
+                      href={`/${item.slug}`}
+                      key={item.name}
+                      className='group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800'
+                    >
+                      <div className='font-medium text-gray-200 group-hover:text-gray-50'>
+                        {item.name}
+                      </div>
 
-          <footer className='absolute bottom-2 text-gray-700'>
-            © {new Date().getFullYear()} By{' '}
-            <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
-              Theodorus Clarence
-            </UnderlineLink>
-          </footer>
-        </div>
-      </section>
-    </main>
+                      {item.description ? (
+                        <div className='line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300'>
+                          {item.description}
+                        </div>
+                      ) : null}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }

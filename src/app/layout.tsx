@@ -7,6 +7,7 @@ import '@/styles/colors.css';
 import '@/styles/main.scss';
 
 import ClientApplication from '@/app/ClientApplication';
+import { AddressBar } from '@/app/components/address-bar';
 import Footer from '@/app/components/layout/Footer';
 import Header from '@/app/components/layout/Header';
 import { siteConfig } from '@/constant/config';
@@ -59,10 +60,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body>
+    <html className='[color-scheme:dark]'>
+      <body className="overflow-y-scroll bg-gray-1100 bg-[url('/grid.svg')] pb-36">
         <Header />
-        <ClientApplication>{children}</ClientApplication>
+
+        <div className='lg:pl-72'>
+          <div className='mx-auto max-w-4xl space-y-8 px-2 pt-20 lg:px-8 lg:py-8'>
+            <div className='rounded-lg bg-vc-border-gradient p-px shadow-lg shadow-black/20'>
+              <div className='rounded-lg bg-black'>
+                <AddressBar />
+              </div>
+            </div>
+
+            <div className='rounded-lg bg-vc-border-gradient p-px shadow-lg shadow-black/20'>
+              <div className='rounded-lg bg-black p-3.5 lg:p-6'>
+                {' '}
+                <ClientApplication>{children}</ClientApplication>
+              </div>
+            </div>
+          </div>
+        </div>
         <Footer />
       </body>
     </html>
